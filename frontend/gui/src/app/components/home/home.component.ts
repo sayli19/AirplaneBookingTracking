@@ -18,6 +18,7 @@ allDetails:any;
     this.httpService.getPlaneDetails()
     .subscribe(
       data => {
+   
         this.allDetails = data.result;
         console.log(this.allDetails)
       },
