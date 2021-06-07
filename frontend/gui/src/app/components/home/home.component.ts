@@ -12,7 +12,8 @@ passport:"PXXXXXXXX"
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
-    this.getPlaneDetails();
+   // this.getPlaneDetails();
+    this.getrelatedFraudsterPassengers("N56435679")
   }
 
   verifyPassenger(passport){
@@ -25,6 +26,20 @@ passport:"PXXXXXXXX"
         console.log("error"+error);
       });
   }
+
+  getrelatedFraudsterPassengers(num){
+    this.httpService.relatedPassenger("N56435679")
+    .subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log("oops"+error);
+      });
+  }
+
+
+
   getPlaneDetails():void{
     this.httpService.getPlaneDetails()
     .subscribe(

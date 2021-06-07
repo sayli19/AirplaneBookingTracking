@@ -17,5 +17,12 @@ module.exports = (app) => {
     });
   });
 
+  router.get("/related-passenger/:pnum", function (req, res) {
+    contrl.relatedPassenger(req.params.pnum).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };
