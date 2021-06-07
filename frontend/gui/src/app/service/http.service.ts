@@ -18,4 +18,10 @@ export class HttpService {
     let baseUrl = 'http://localhost:3000/verify';
     return this.http.get(`${baseUrl}/${pnum}`);
   }
+
+  relatedPassenger(pnum): Observable<any> {
+    let baseUrl = 'http://localhost:3000/related-passenger';
+    return this.http.get(`${baseUrl}/${pnum}`);
+  }
+
 }

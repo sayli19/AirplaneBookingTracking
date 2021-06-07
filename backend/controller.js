@@ -44,6 +44,27 @@ exports.verifyPassenger = (req, res) => {
       });
     });
 };
+
+exports.relatedPassenger = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        // "MATCH (:Passenger {firstname: 'Will'})--(p:Passenger)-->() WITH p, count(*) AS foaf WHERE foaf >= 1 RETURN p"
+        //)
+
+        "MATCH (:Passenger {passport:" +
+          "'" +
+          req +
+          "'" +
+          "})--(p:Passenger)-->() WITH p, count(*) AS foaf WHERE foaf >= 1 RETURN p"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        return record.get("p");
+      });
+    });
+};
 // function getAllPlaces(req, res) {
 //   return session
 //     .readTransaction((tx) => tx.run("MATCH (n) RETURN n"))
