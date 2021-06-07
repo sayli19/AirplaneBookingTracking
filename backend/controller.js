@@ -16,6 +16,34 @@ exports.getAllPlaces = (req, res) => {
     });
 };
 
+exports.verifyPassenger = (req, res) => {
+  console.log(req);
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (n:Fraudster {passport:" +
+          "'" +
+          req +
+          "'" +
+          "}), (p:Passenger {passport:" +
+          "'" +
+          req +
+          "'" +
+          "}) return n ,p "
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        let pass = record.get("p");
+        let nfra = record.get("n");
+        let body = {
+          p: pass,
+          n: nfra,
+        };
+        return body;
+      });
+    });
+};
 // function getAllPlaces(req, res) {
 //   return session
 //     .readTransaction((tx) => tx.run("MATCH (n) RETURN n"))

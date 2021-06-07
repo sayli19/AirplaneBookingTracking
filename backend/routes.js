@@ -3,13 +3,19 @@ module.exports = (app) => {
   var path = require("path");
   var router = require("express").Router();
 
-  //router.get("", contrl.getAllPlaces);
-  console.log("roures");
   router.get("/", function (req, res) {
     contrl.getAllPlaces().then((plane) => {
       // res.json({ result: plane });
       res.send({ result: plane });
     });
   });
+
+  router.get("/verify/:pnum", function (req, res) {
+    contrl.verifyPassenger(req.params.pnum).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };
