@@ -37,8 +37,8 @@ exports.verifyPassenger = (req, res) => {
         let pass = record.get("p");
         let nfra = record.get("n");
         let body = {
-          p: pass,
-          n: nfra,
+          passenger: pass,
+          fraudster: nfra,
         };
         return body;
       });
@@ -49,9 +49,6 @@ exports.relatedPassenger = (req, res) => {
   return session
     .readTransaction((tx) =>
       tx.run(
-        // "MATCH (:Passenger {firstname: 'Will'})--(p:Passenger)-->() WITH p, count(*) AS foaf WHERE foaf >= 1 RETURN p"
-        //)
-
         "MATCH (:Passenger {passport:" +
           "'" +
           req +
@@ -61,16 +58,36 @@ exports.relatedPassenger = (req, res) => {
     )
     .then((res) => {
       return res.records.map((record) => {
-        return record.get("p");
+        let details = record.get("p");
+
+        let body = {
+          details: details.properties,
+        };
+        return body;
       });
     });
 };
-// function getAllPlaces(req, res) {
-//   return session
-//     .readTransaction((tx) => tx.run("MATCH (n) RETURN n"))
-//     .then((res) => {
-//       return res.records.map((record) => {
-//         return record.get("n");
-//       });
-//     });
-// }
+//MATCH (p1:Passenger)-[r1]->(:Passenger {firstname: 'Will'})
+//RETURN DISTINCT type(r1), p1.firstname
+exports.getrelationship = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (p1:Passenger)-[r1]->(:Passenger {passport:" +
+          "'" +
+          req +
+          "'" +
+          "}) RETURN DISTINCT type(r1) as relation, p1.firstname"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        let relation = record.get("relation");
+
+        let body = {
+          relation: relation,
+        };
+        return body;
+      });
+    });
+};

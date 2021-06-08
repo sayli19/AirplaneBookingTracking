@@ -24,5 +24,12 @@ module.exports = (app) => {
     });
   });
 
+  router.get("/relationship/:pnum", function (req, res) {
+    contrl.getrelationship(req.params.pnum).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };

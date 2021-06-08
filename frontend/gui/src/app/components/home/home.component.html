@@ -8,22 +8,57 @@
 </head>
 <body>
   
-<div class="container">
-    <h3>Verify passenger details</h3> 
-    <span class="label1">Passport Number</span>  <br>
-
-     <div class="inputs">
+<div >
+     <div class="card1">
+          <h3>Verify passenger details</h3> 
+          <span class="label1">Passport Number</span>  <br>
+          <br>
       <form><input type="text" [(ngModel)]="passport" name="passport" ></form>
       <button type="submit" (click)="verifyPassenger(passport)">Verify</button>
      </div>
+
+          <br>
+          <br>
+          <br>
+
+     <div class="card" *ngIf="isFraudster">
+          Verification failed for <h3>{{fraudsterName.firstname}} {{fraudsterName.lastname}}</h3> 
+          Passengers related to this passenger are
+          <br>
+          <br>
+          <div *ngFor="let item of relatedPassengers; let i = index">
+               <table>
+                    <tr>
+                         <th>Passenger</th>
+                         <th>Passport Number</th>
+                    </tr>
+                    <tr>
+                         <td>{{item.details.firstname}} {{item.details.lastname}}</td>
+                         <td>{{item.details.passport}}</td>
+                    </tr>
+               </table>
+               <p> </p>
+          </div>
+          <div *ngFor="let item of relationship; let i = index">
+               <table>
+                    <tr>
+                         <th>Relationship with Passenger</th>
+                    </tr>
+                    <tr>
+                         <td>{{item.relation}}</td>
+                    </tr>
+               </table>
+               <p> </p>
+          </div>
+     </div>
+
+     <!-- NOT A FRAUDSTER -->
+
+     <div  *ngIf="!isFraudster">
+          Verified
+     </div>
     
    </div>
-<!-- 
-     <p>home works!</p>
-     <div class="productList" *ngFor ="let item of allDetails" > 
-     <p>{{item.properties.firstname}}</p>
-          </div> -->
-        <!-- Default form login -->
 
 
 </body>
