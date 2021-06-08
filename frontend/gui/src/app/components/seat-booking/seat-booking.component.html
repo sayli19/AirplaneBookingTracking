@@ -13,12 +13,25 @@
 <br>
     <div class="container" style="justify-content: center; align-items: center;">
 
+
         <div class="dropDownLeft">
             <div class="dropdown">
-                <button class="dropbtn">Window Seat</button>
+                <button class="dropbtn">Number of Seats</button>
                 <div class="dropdown-content">
-                  <a (click)="loadCategory(0, 'Products')">Yes</a>
-                  <a (click)="loadCategory(1, 'Vegetables')">No</a>
+                  <a (click)="seats(10)">1</a>
+                  <a (click)="seats(2)">2</a>
+                  <a (click)="seats(3)">3</a>
+                  <a (click)="seats(4)">4</a>
+                </div>
+              </div>
+            </div>
+
+        <div class="dropDownLeft">
+            <div class="dropdown">
+                <button class="dropbtn">Seat Preference</button>
+                <div class="dropdown-content">
+                  <a (click)="pref('Window')">Window</a>
+                  <a (click)="pref('Aisle')">Aisle</a>
                 </div>
               </div>
             </div>
@@ -27,9 +40,9 @@
                 <div class="dropdown">
                     <button class="dropbtn">Seat location</button>
                     <div class="dropdown-content">
-                      <a (click)="loadCategory(0, 'Products')">Washroom</a>
-                      <a (click)="loadCategory(1, 'Vegetables')">Canteen</a>
-                      <a (click)="loadCategory(1, 'Vegetables')">Middle</a>
+                      <a (click)="location('Washroom')">Washroom</a>
+                      <a (click)="location('Canteen')">Canteen</a>
+                      <a (click)="location('Middle')">Middle</a>
                     </div>
                   </div>
                 </div>
@@ -39,32 +52,32 @@
         <div class="card" style="width: 23rem; padding: 10px; margin-left: 10px;">
             <div class="row"> 
                 <div class="col-4">
-                3 &nbsp;<span class="badge">A</span>
-                 <span class="badge" style="margin-left: 10px;">B</span>
+                3 &nbsp;<span class="badge" [style.background-color]="allSeats[0].properties.available == 'Yes' ? 'Green' : 'aliceblue'">A</span>
+                 <span class="badge" style="margin-left: 10px;"  [style.background-color]="allSeats[1].properties.available == 'Yes' ? 'Green' : 'aliceblue'">B</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">C</span>
-                 <span class="badge" style="margin-left: 10px;">D</span>
+                  <span class="badge" [style.background-color]="allSeats[2].properties.available == 'Yes' ? 'Green' : 'aliceblue'">C</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[3].properties.available == 'Yes' ? 'Green' : 'aliceblue'">D</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">E</span>
-                 <span class="badge" style="margin-left: 10px;">F</span>
+                  <span class="badge" [style.background-color]="allSeats[4].properties.available == 'Yes' ? 'Green' : 'aliceblue'">E</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[5].properties.available == 'Yes' ? 'Green' : 'aliceblue'">F</span>
                 </div>
               </div>
 
               <br>
               <div class="row"> 
                 <div class="col-4">
-                 4 &nbsp; <span class="badge">A</span>
-                 <span class="badge" style="margin-left: 10px;">B</span>
+                 4 &nbsp; <span class="badge" [style.background-color]="allSeats[6].properties.available == 'Yes' ? 'Green' : 'aliceblue'">A</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[7].properties.available == 'Yes' ? 'Green' : 'aliceblue'">B</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">C</span>
-                 <span class="badge" style="margin-left: 10px;">D</span>
+                  <span class="badge" [style.background-color]="allSeats[8].properties.available == 'Yes' ? 'Green' : 'aliceblue'">C</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[9].properties.available == 'Yes' ? 'Green' : 'aliceblue'">D</span>
                 </div>
-                <div class="col-4">
-                  <span class="badge">E</span>
-                 <span class="badge" style="margin-left: 10px;">F</span>
+                <div class="col-4" >
+                  <span class="badge" [style.background-color]="allSeats[10].properties.available == 'Yes' ? 'Green' : 'aliceblue'">E</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[11].properties.available == 'Yes' ? 'Green' : 'aliceblue'">F</span>
                 </div>
               </div>
 <br>
@@ -101,32 +114,32 @@
 
               <div class="row"> 
                 <div class="col-4">
-                10 &nbsp;<span class="badge">A</span>
-                 <span class="badge" style="margin-left: 10px;">B</span>
+                10 &nbsp;<span class="badge" [style.background-color]="allSeats[12].properties.available == 'Yes' ? 'Green' : 'aliceblue'">A</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[13].properties.available == 'Yes' ? 'Green' : 'aliceblue'">B</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">C</span>
-                 <span class="badge" style="margin-left: 10px;">D</span>
+                  <span class="badge" [style.background-color]="allSeats[14].properties.available == 'Yes' ? 'Green' : 'aliceblue'">C</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[15].properties.available == 'Yes' ? 'Green' : 'aliceblue'">D</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">E</span>
-                 <span class="badge" style="margin-left: 10px;">F</span>
+                  <span class="badge" [style.background-color]="allSeats[16].properties.available == 'Yes' ? 'Green' : 'aliceblue'">E</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[17].properties.available == 'Yes' ? 'Green' : 'aliceblue'">F</span>
                 </div>
               </div>
 
               <br>
               <div class="row"> 
                 <div class="col-4">
-                 11 &nbsp; <span class="badge">A</span>
-                 <span class="badge" style="margin-left: 10px;">B</span>
+                 11 &nbsp; <span class="badge" [style.background-color]="allSeats[18].properties.available == 'Yes' ? 'Green' : 'aliceblue'">A</span>
+                 <span class="badge" style="margin-left: 10px;"[style.background-color]="allSeats[19].properties.available == 'Yes' ? 'Green' : 'aliceblue'">B</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">C</span>
-                 <span class="badge" style="margin-left: 10px;">D</span>
+                  <span class="badge"[style.background-color]="allSeats[20].properties.available == 'Yes' ? 'Green' : 'aliceblue'">C</span>
+                 <span class="badge" style="margin-left: 10px;"[style.background-color]="allSeats[21].properties.available == 'Yes' ? 'Green' : 'aliceblue'">D</span>
                 </div>
                 <div class="col-4">
-                  <span class="badge">E</span>
-                 <span class="badge" style="margin-left: 10px;">F</span>
+                  <span class="badge" [style.background-color]="allSeats[22].properties.available == 'Yes' ? 'Green' : 'aliceblue'">E</span>
+                 <span class="badge" style="margin-left: 10px;" [style.background-color]="allSeats[23].properties.available == 'Yes' ? 'Green' : 'aliceblue'">F</span>
                 </div>
               </div>
 

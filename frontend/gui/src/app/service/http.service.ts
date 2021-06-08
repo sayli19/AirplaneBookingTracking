@@ -29,4 +29,7 @@ export class HttpService {
     return this.http.get(`${baseUrl}/${pnum}`);
   }
 
+  getAllSeats(): Observable<any> {
+    return this.http.get('http://localhost:3000/seats');
+  }
 }

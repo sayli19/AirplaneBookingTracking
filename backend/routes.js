@@ -31,5 +31,14 @@ module.exports = (app) => {
     });
   });
 
+  //USE CASE 2
+
+  router.get("/seats", function (req, res) {
+    contrl.getAllSeats().then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };
