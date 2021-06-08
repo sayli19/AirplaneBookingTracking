@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +13,7 @@ relatedPassengers:any;
 isFraudster : boolean = false;
 fraudsterName;
 relationship:any;
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit(): void {
    // this.getPlaneDetails();
@@ -73,6 +73,11 @@ relationship:any;
       error => {
         console.log("sayli error"+error);
       });
+  }
+
+  goToSeatBooking() : void{
+   // this.router.navigateByUrl('/cart', { state: this.cart });
+   this.router.navigateByUrl('/seat');
   }
 
 
