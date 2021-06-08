@@ -91,3 +91,15 @@ exports.getrelationship = (req, res) => {
       });
     });
 };
+
+//USE CASE 2
+
+exports.getAllSeats = (req, res) => {
+  return session
+    .readTransaction((tx) => tx.run("MATCH (n:Seats) return n"))
+    .then((res) => {
+      return res.records.map((record) => {
+        return record.get("n");
+      });
+    });
+};
