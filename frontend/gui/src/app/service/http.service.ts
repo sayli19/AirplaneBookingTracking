@@ -24,4 +24,9 @@ export class HttpService {
     return this.http.get(`${baseUrl}/${pnum}`);
   }
 
+  getrelationship(pnum): Observable<any> {
+    let baseUrl = 'http://localhost:3000/relationship';
+    return this.http.get(`${baseUrl}/${pnum}`);
+  }
+
 }
