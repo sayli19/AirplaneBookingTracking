@@ -80,5 +80,9 @@ relationship:any;
    this.router.navigateByUrl('/seat');
   }
 
+  bookAnotherTicket() {
+    this.router.navigateByUrl('/new-booking');
+  }
+
 
 }

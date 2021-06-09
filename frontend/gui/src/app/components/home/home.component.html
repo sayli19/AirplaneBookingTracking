@@ -56,9 +56,10 @@
 
      <div  *ngIf="!isFraudster">
         <button (click) ="goToSeatBooking()">Continue to seat booking</button>
-
      </div>
-    
+     <div  *ngIf="!isFraudster">
+          <button (click) ="bookAnotherTicket()">Book another ticket</button>
+       </div>
    </div>
 
 
