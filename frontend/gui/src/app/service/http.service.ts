@@ -40,5 +40,15 @@ export class HttpService {
   getSeatLocation(): Observable<any> {
     return this.http.get('http://localhost:3000/seats/location');
   }
-  
+
+  getFlightDetails(flight): Observable<any> {
+    let baseUrl = 'http://localhost:3000/booking';
+    return this.http.get(`${baseUrl}/${flight}`);
+  }
+
+  getHops(to): Observable<any> {
+    let baseUrl = 'http://localhost:3000/flight-hops';
+    return this.http.get(`${baseUrl}/${to}`);
+  }
+
 }

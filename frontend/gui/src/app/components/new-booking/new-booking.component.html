@@ -9,11 +9,50 @@
 
       <title>Document</title>
   </head>
-  <body>
-    <div class="card">
-        <div class="card-body">
-          This is some text within a card body.
+  <body class="container" style=" justify-content: center; align-items: center;">
+  
+  <br><br><br><br><br>
+  <h3 style="margin-left: 40%;">Find nearest flights</h3>
+  <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="card" style="height: 100px; justify-content: center;">
+            <form>
+
+                &nbsp;  &nbsp; <label>From : &nbsp;  &nbsp; </label> <input type="text" [(ngModel)]="flight" name="flight" > 
+                &nbsp;    &nbsp;  &nbsp;  &nbsp;    &nbsp;    &nbsp;   &nbsp;    &nbsp;    &nbsp;  &nbsp;  &nbsp;
+  
+                <label>To : &nbsp;  </label>   <input type="text" name="flight" >
+                 
+              </form>
         </div>
+        <button  class="btn btn-warning" type="submit" (click)="getFlightDetails(flight)">Verify</button>
       </div>
+
+    
+      <div class="d-grid gap-2 col-6 mx-auto" >
+        <br>
+        <h3> Nearest Airport is  <u>{{mainAirport}}</u> </h3>
+       <h5> Other nearest locations from <u>{{mainAirport}}</u> you might be interested in</h5>
+    
+       <table >
+           <tr>
+            <th>From <u>{{mainAirport}}</u> to </th>
+            <th>Distance</th>
+           </tr>
+           <tr *ngFor = "let item of airports">
+            <td *ngIf="item.distance">{{item.Airport}}
+                <span *ngIf="item.Airport == 'Lisbon'">
+                  ( <i> {{mainAirport}} <span *ngFor="let i of hops">- {{i.end.properties.airport}} </span> </i>)
+                </span>
+            </td>
+            <td *ngIf="item.distance">{{item.distance}}</td>
+           </tr>
+       </table>
+       <div >
+ 
+       </div>
+     
+      </div>
+
       </body>
       </html>
