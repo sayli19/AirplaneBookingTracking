@@ -137,3 +137,60 @@ exports.getSeatLocation = (req, res) => {
       });
     });
 };
+
+exports.getFlightDetails = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (n:Airport {airport:" +
+          "'" +
+          req +
+          "'" +
+          "}) CALL gds.alpha.shortestPath.deltaStepping.stream({nodeProjection: 'Airport', \
+        relationshipProjection: { \
+            TO: { \
+              type: 'TO', \
+              properties: 'distance' \
+            } \
+          }, \
+          startNode: n, \
+          relationshipWeightProperty: 'distance', \
+          delta: 3.0 \
+        }) \
+        YIELD nodeId, distance \
+        RETURN gds.util.asNode(nodeId).airport AS Airport, distance AS distance LIMIT 7"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        let Airport = record.get("Airport");
+        let distance = record.get("distance");
+        let body = {
+          Airport: Airport,
+          distance: distance,
+        };
+        return body;
+      });
+    });
+};
+
+exports.getHops = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (from:Airport {airport:'Madrid'}), (to:Airport  {airport:" +
+          "'" +
+          req +
+          "'" +
+          "}) , path = (from)-[:TO*]->(to)\
+        RETURN path AS shortestPath,reduce(distance = 0, r in relationships(path) | distance+r.distance) AS totalDistance\
+        ORDER BY totalDistance ASC\
+        LIMIT 1"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        return record.get("shortestPath");
+      });
+    });
+};

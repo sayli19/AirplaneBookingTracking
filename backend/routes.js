@@ -54,5 +54,19 @@ module.exports = (app) => {
     });
   });
 
+  router.get("/booking/:flight", function (req, res) {
+    contrl.getFlightDetails(req.params.flight).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
+  router.get("/flight-hops/:to", function (req, res) {
+    contrl.getHops(req.params.to).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };
