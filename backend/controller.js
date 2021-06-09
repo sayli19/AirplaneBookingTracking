@@ -103,3 +103,37 @@ exports.getAllSeats = (req, res) => {
       });
     });
 };
+
+exports.getWindowSeat = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (a:Seats{available:'Yes'})-[r:HAS_WINDOW]->(w:Window {name:'Yes'}) RETURN a"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        return record.get("a");
+      });
+    });
+};
+
+exports.getSeatLocation = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (g:Window{name:'Yes'})<-[r1:HAS_WINDOW]-(a:Seats{class:'Business'})-[r2:IS_NEAR_WASHROOM]->(f:Washroom), (a1:Seats{class:'Business'})-[r3:IS_NEAR_WASHROOM]->(f1:Washroom) RETURN a,a1"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        let windowSide = record.get("a");
+        let row = record.get("a1");
+        let body = {
+          windowside: windowSide,
+          windowrow: row,
+        };
+        return body;
+      });
+    });
+};

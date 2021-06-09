@@ -40,5 +40,19 @@ module.exports = (app) => {
     });
   });
 
+  router.get("/seats/window", function (req, res) {
+    contrl.getWindowSeat().then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
+  router.get("/seats/location", function (req, res) {
+    contrl.getSeatLocation().then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };
