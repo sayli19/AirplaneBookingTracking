@@ -32,4 +32,13 @@ export class HttpService {
   getAllSeats(): Observable<any> {
     return this.http.get('http://localhost:3000/seats');
   }
+
+  getWindowSeat(): Observable<any> {
+    return this.http.get('http://localhost:3000/seats/window');
+  }
+
+  getSeatLocation(): Observable<any> {
+    return this.http.get('http://localhost:3000/seats/location');
+  }
+  
 }
