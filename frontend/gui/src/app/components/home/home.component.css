@@ -27,7 +27,7 @@ body {
 .card {
   position: relative;
   width: 500px;
-  height: 350px;
+  height: 500px;
   border-radius: 20px;
   padding: 40px;
   box-sizing: border-box;

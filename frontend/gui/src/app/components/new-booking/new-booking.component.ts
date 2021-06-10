@@ -10,6 +10,8 @@ export class NewBookingComponent implements OnInit {
   airports:any;
   mainAirport;
   hops:any;
+  showNearest : boolean = false;
+  showHopsVar: boolean = false;
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ getConnectingFlights(flight){
      console.log(data.result)
      this.airports = data.result
      this.getHops('Lisbon')
+     this.showNearest =  true;
     },
     error => {
       console.log("error"+error);
@@ -56,6 +59,10 @@ getHops(to){
     error => {
       console.log("error"+error);
     });
+}
+
+showHops(){
+this.showHopsVar = true;
 }
 
 }

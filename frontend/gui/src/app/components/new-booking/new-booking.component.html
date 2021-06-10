@@ -12,6 +12,11 @@
   <body class="container" style=" justify-content: center; align-items: center;">
   
   <br><br><br><br><br>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+    </div>
+  </div>
   <h3 style="margin-left: 40%;">Find nearest flights</h3>
   <br>
     <div class="d-grid gap-2 col-6 mx-auto">
@@ -25,34 +30,38 @@
                  
               </form>
         </div>
-        <button  class="btn btn-warning" type="submit" (click)="getFlightDetails(flight)">Verify</button>
+        <button  class="btn btn-warning" type="submit" (click)="getFlightDetails(flight)">Search</button>
       </div>
 
     
       <div class="d-grid gap-2 col-6 mx-auto" >
         <br>
         <h3> Nearest Airport is  <u>{{mainAirport}}</u> </h3>
-       <h5> Other nearest locations from <u>{{mainAirport}}</u> you might be interested in</h5>
+        
+        <h5 *ngIf="showNearest" (click) ="showHops()"> Show Other nearest locations from <u>{{mainAirport}}</u> you might be interested in</h5>
+       
+     
+          <table  *ngIf="showHopsVar" >
+              <tr>
+               <th>From <u>{{mainAirport}}</u> to </th>
+               <th>Distance</th>
+              </tr>
+              <tr *ngFor = "let item of airports">
+               <td *ngIf="item.distance">{{item.Airport}}
+                   <span *ngIf="item.Airport == 'Lisbon'">
+                     ( <i> {{mainAirport}} <span *ngFor="let i of hops">- {{i.end.properties.airport}} </span> </i>)
+                   </span>
+               </td>
+               <td *ngIf="item.distance">{{item.distance}}</td>
+              </tr>
+          </table>
     
-       <table >
-           <tr>
-            <th>From <u>{{mainAirport}}</u> to </th>
-            <th>Distance</th>
-           </tr>
-           <tr *ngFor = "let item of airports">
-            <td *ngIf="item.distance">{{item.Airport}}
-                <span *ngIf="item.Airport == 'Lisbon'">
-                  ( <i> {{mainAirport}} <span *ngFor="let i of hops">- {{i.end.properties.airport}} </span> </i>)
-                </span>
-            </td>
-            <td *ngIf="item.distance">{{item.distance}}</td>
-           </tr>
-       </table>
+     
        <div >
  
        </div>
      
       </div>
-
+    
       </body>
       </html>

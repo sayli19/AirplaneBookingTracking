@@ -4,13 +4,15 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
      <title>Document</title>
 </head>
 <body>
   
 <div >
      <div class="card1">
-          <h3>Verify passenger details</h3> 
+          <h5>Verify passenger details</h5> 
           <span class="label1">Passport Number</span>  <br>
           <br>
       <form><input type="text" [(ngModel)]="passport" name="passport" ></form>
@@ -22,38 +24,45 @@
           <br>
 
      <div class="card" *ngIf="isFraudster">
-          Verification failed for <h3>{{fraudsterName.firstname}} {{fraudsterName.lastname}}</h3> 
-          Passengers related to this passenger are
+        <B style="font-size: 20px; color: red;">Fraudster alert</B> <br>
+          Verification failed for <B>{{fraudsterName.firstname}} {{fraudsterName.lastname}}</B>
+          Passengers related to {{fraudsterName.firstname}} {{fraudsterName.lastname}} is/are
           <br>
           <br>
-          <div *ngFor="let item of relatedPassengers; let i = index">
-               <table>
-                    <tr>
-                         <th>Passenger</th>
-                         <th>Passport Number</th>
-                    </tr>
-                    <tr>
-                         <td>{{item.details.firstname}} {{item.details.lastname}}</td>
-                         <td>{{item.details.passport}}</td>
-                    </tr>
-               </table>
-               <p> </p>
+          <div class="d-grid gap-2 col-6 mx-auto">
+               <div *ngFor="let item of relatedPassengers; let i = index">
+                    <table>
+                         <tr>
+                              <th>Passenger</th>
+                              <th>Passport Number</th>
+                         </tr>
+                         <tr>
+                              <td>{{item.details.firstname}} {{item.details.lastname}}</td>
+                              <td>{{item.details.passport}}</td>
+                         </tr>
+                    </table>
+                    <p> </p>
+               </div>
+               <div *ngFor="let item of relationship; let i = index">
+                    <table>
+                         <tr>
+                              <th>Relationship with Passenger</th>
+                         </tr>
+                         <tr>
+                              <td>{{item.relation}}</td>
+                         </tr>
+                    </table>
+                    <p> </p>
+               </div>
           </div>
-          <div *ngFor="let item of relationship; let i = index">
-               <table>
-                    <tr>
-                         <th>Relationship with Passenger</th>
-                    </tr>
-                    <tr>
-                         <td>{{item.relation}}</td>
-                    </tr>
-               </table>
-               <p> </p>
-          </div>
+      
+       
      </div>
 
      <!-- NOT A FRAUDSTER -->
-
+     <div  *ngIf="!isFraudster">
+         <h3>Verification Successful !</h3> 
+       </div>
      <div  *ngIf="!isFraudster">
         <button (click) ="goToSeatBooking()">Continue to seat booking</button>
      </div>
