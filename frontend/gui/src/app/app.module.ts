@@ -7,12 +7,14 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { SeatBookingComponent } from './components/seat-booking/seat-booking.component';
 import { NewBookingComponent } from './components/new-booking/new-booking.component';
+import { RecommendPlacesComponent } from './components/recommend-places/recommend-places.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SeatBookingComponent,
-    NewBookingComponent
+    NewBookingComponent,
+    RecommendPlacesComponent
   ],
   imports: [
     BrowserModule,

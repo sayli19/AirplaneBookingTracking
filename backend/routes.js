@@ -68,5 +68,49 @@ module.exports = (app) => {
     });
   });
 
+  //--------------------------------user story 1-------------------------------------//
+
+  // router.get("/getGraph", function (req, res) {
+  //   contrl.getGraph().then((plane) => {
+  //     // res.json({ result: plane });
+  //     res.send({ result: plane });
+  //   });
+  // });
+
+  // router.get("/getShortestAndFurthest", function (req, res) {
+  //   contrl.getShortestAndFurthest().then((plane) => {
+  //     // res.json({ result: plane });
+  //     res.send({ result: plane });
+  //   });
+  // });
+
+  router.get("/getShortestAndFurthest/:flight", function (req, res) {
+    contrl.getShortestAndFurthest(req.params.flight).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
+  router.get("/getDirectFlights", function (req, res) {
+    contrl.getDirectFlights().then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
+  router.get("/getFLightsByLayoverDuration", function (req, res) {
+    contrl.getFLightsByLayoverDuration().then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
+  router.get("/getNumberOfHops", function (req, res) {
+    contrl.getNumberOfHops().then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
   app.use("", router);
 };
