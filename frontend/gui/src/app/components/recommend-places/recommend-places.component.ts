@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class RecommendPlacesComponent implements OnInit {
   flight;
   mainAirport;
+  flights:any;
   constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit(): void {
@@ -19,8 +20,22 @@ export class RecommendPlacesComponent implements OnInit {
     this.httpService.getShortestAndFurthest(flight)
     .subscribe(
       data => {
-        console.log(data.result[1])
+        console.log(data.result)
         this.mainAirport = data.result[1].Airport
+        // console.log(this.mainAirport)
+        // this.getConnectingFlights(this.mainAirport)
+      },
+      error => {
+        console.log("error"+error);
+      });
+  }
+
+  getDirectFlights(){
+    this.httpService.getDirectFlights()
+    .subscribe(
+      data => {
+        console.log(data.result)
+        this.flights = data.result
         // console.log(this.mainAirport)
         // this.getConnectingFlights(this.mainAirport)
       },

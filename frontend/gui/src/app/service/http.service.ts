@@ -52,8 +52,14 @@ export class HttpService {
   }
 
   getShortestAndFurthest(flight): Observable<any> {
-    let baseUrl = 'http://localhost:3000/booking';
+    let baseUrl = 'http://localhost:3000/getShortestAndFurthest';
     return this.http.get(`${baseUrl}/${flight}`);
   }
+
+  getDirectFlights(): Observable<any> {
+    // let baseUrl = 'http://localhost:3000/getDirectFlights';
+    return this.http.get('http://localhost:3000/getDirectFlights');
+  }
+  
 
 }

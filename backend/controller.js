@@ -206,7 +206,40 @@ exports.getHops = (req, res) => {
 //     });
 // };
 
+exports.getPlacesBasedOnLikes = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (n:Highlights)<-[k:HAS_HIGHLIGHTS]-(b:Venue)<-[l:has]-(a) WHERE n.name = '" +
+          req +
+          "' RETURN b.name AS place"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        return record.get("place");
+      });
+    });
+};
+
+exports.getPlacesBasedOnPreviousWebsitesVisited = (req, res) => {
+  return session
+    .readTransaction((tx) =>
+      tx.run(
+        "MATCH (n:Travel_Links)-[k:IS_CONNECTED]->(b:Venue)<-[l:has]-(a) WHERE n.name =" +
+          req +
+          "' RETURN b.name AS places"
+      )
+    )
+    .then((res) => {
+      return res.records.map((record) => {
+        return record.get("places");
+      });
+    });
+};
+
 exports.getShortestAndFurthest = (req, res) => {
+  console.log(req);
   return session
     .readTransaction((tx) =>
       tx.run(

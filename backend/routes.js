@@ -84,6 +84,25 @@ module.exports = (app) => {
   //   });
   // });
 
+  router.get("/getPlacesBasedOnLikes/:likes", function (req, res) {
+    contrl.getPlacesBasedOnLikes(req.params.likes).then((plane) => {
+      // res.json({ result: plane });
+      res.send({ result: plane });
+    });
+  });
+
+  router.get(
+    "/getPlacesBasedOnPreviousWebsitesVisited/:website",
+    function (req, res) {
+      contrl
+        .getPlacesBasedOnPreviousWebsitesVisited(req.params.website)
+        .then((plane) => {
+          // res.json({ result: plane });
+          res.send({ result: plane });
+        });
+    }
+  );
+
   router.get("/getShortestAndFurthest/:flight", function (req, res) {
     contrl.getShortestAndFurthest(req.params.flight).then((plane) => {
       // res.json({ result: plane });

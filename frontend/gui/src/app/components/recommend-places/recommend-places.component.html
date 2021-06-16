@@ -17,7 +17,7 @@
       Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
     </div>
   </div>
-  <h3 style="margin-left: 40%;">Find nearest flights</h3>
+  <h3 style="margin-left: 40%;">Find nearest airports</h3>
   <br>
     <div class="d-grid gap-2 col-6 mx-auto">
         <div class="card" style="height: 100px; justify-content: center;">
@@ -37,6 +37,7 @@
       <div class="d-grid gap-2 col-6 mx-auto" >
         <br>
         <h3> Nearest Airport is  <u>{{mainAirport}}</u> </h3>
+
         
         <!-- <h5 *ngIf="showNearest" (click) ="showHops()"> Show Other nearest locations from <u>{{mainAirport}}</u> you might be interested in</h5>
        
@@ -56,7 +57,14 @@
               </tr>
           </table>
      -->
-     
+     <button  class="btn btn-warning"  (click)="getDirectFlights()">Search Direct Flights</button>
+
+     <table  *ngIf="mainAirport" > 
+      <tr *ngFor = "let item of flights">
+       <h3><td *ngIf="item">{{item}}
+       </td></h3>
+      </tr>
+    </table>
        <div >
  
        </div>
