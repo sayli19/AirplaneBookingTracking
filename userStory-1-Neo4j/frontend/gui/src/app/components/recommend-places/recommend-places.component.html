@@ -17,6 +17,41 @@
       Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
     </div>
   </div>
+
+
+  <h3 style="margin-left: 25%;">Recommendation for places based on likes/interests</h3>
+  <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="card" style="height: 100px; justify-content: center;">
+            <form>
+
+                &nbsp;  &nbsp; <label>Enter your likes/ interests(Castle, Lakes, Landscapes) : &nbsp;  &nbsp; </label> <input type="text" [(ngModel)]="likes" name="likes" > 
+               
+              </form>
+        </div>
+        <button  class="btn btn-secondary" type="submit" (click)="getPlacesBasedOnLikes(likes)">Search</button>
+        <h3> Recommended place: <u> {{place}}</u> </h3>
+      </div>
+      <br>
+      <br>
+      
+    <h3 style="margin-left: 25%;">Recommendation for places based on previous websites visited</h3>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="card" style="height: 100px; justify-content: center;">
+            <form>
+
+                &nbsp;  &nbsp; <label>Previously visited website : &nbsp;  &nbsp; </label> <input type="text" [(ngModel)]="website" name="website" > 
+               
+              </form>
+        </div>
+        <button  class="btn btn-secondary" type="submit" (click)="getPlacesBasedOnPreviousWebsitesVisited(website)">Search</button>
+        <h3> Recommended place: <u> {{venue}}</u> </h3>
+      </div>
+      <br>
+      <br>
+
+
   <h3 style="margin-left: 40%;">Find nearest airports</h3>
   <br>
     <div class="d-grid gap-2 col-6 mx-auto">
@@ -26,11 +61,11 @@
                 &nbsp;  &nbsp; <label>From : &nbsp;  &nbsp; </label> <input type="text" [(ngModel)]="flight" name="flight" > 
                 &nbsp;    &nbsp;  &nbsp;  &nbsp;    &nbsp;    &nbsp;   &nbsp;    &nbsp;    &nbsp;  &nbsp;  &nbsp;
   
-                <label>To : &nbsp;  </label>   <input type="text" name="flight" >
+                <!-- <label>To : &nbsp;  </label>   <input type="text" name="flight" > -->
                  
               </form>
         </div>
-        <button  class="btn btn-warning" type="submit" (click)="getShortestAndFurthest(flight)">Search</button>
+        <button  class="btn btn-secondary" type="submit" (click)="getShortestAndFurthest(flight)">Search</button>
       </div>
 
     
@@ -39,7 +74,7 @@
         <h3> Nearest Airport is  <u>{{mainAirport}}</u> </h3>
 
         
-        <!-- <h5 *ngIf="showNearest" (click) ="showHops()"> Show Other nearest locations from <u>{{mainAirport}}</u> you might be interested in</h5>
+        <h5 *ngIf="mainAirport" (click) ="showHops()"> Show Other nearest locations from <u>{{mainAirport}}</u> you might be interested in</h5>
        
      
           <table  *ngIf="showHopsVar" >
@@ -49,15 +84,12 @@
               </tr>
               <tr *ngFor = "let item of airports">
                <td *ngIf="item.distance">{{item.Airport}}
-                   <span *ngIf="item.Airport == 'Lisbon'">
-                     ( <i> {{mainAirport}} <span *ngFor="let i of hops">- {{i.end.properties.airport}} </span> </i>)
-                   </span>
                </td>
                <td *ngIf="item.distance">{{item.distance}}</td>
               </tr>
           </table>
-     -->
-     <button  class="btn btn-warning"  (click)="getDirectFlights()">Search Direct Flights</button>
+    
+     <button  class="btn btn-secondary"  (click)="getDirectFlights()">Search Direct Flights</button>
 
      <table  *ngIf="mainAirport" > 
       <tr *ngFor = "let item of flights">

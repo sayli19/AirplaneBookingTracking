@@ -61,5 +61,26 @@ export class HttpService {
     return this.http.get('http://localhost:3000/getDirectFlights');
   }
   
+  getNumberOfHops(airline): Observable<any> {
+    let baseUrl = 'http://localhost:3000/getNumberOfHops';
+    return this.http.get(`${baseUrl}/${airline}`);
+  }
 
+  getFLightsByLayoverDuration(time): Observable<any> {
+    let baseUrl = 'http://localhost:3000/getFLightsByLayoverDuration';
+    return this.http.get(`${baseUrl}/${time}`);
+  }
+
+  
+  getPlacesBasedOnLikes(likes): Observable<any> {
+    let baseUrl = 'http://localhost:3000/getPlacesBasedOnLikes';
+    return this.http.get(`${baseUrl}/${likes}`);
+  }
+
+  getPlacesBasedOnPreviousWebsitesVisited(website): Observable<any> {
+    let baseUrl = 'http://localhost:3000/getPlacesBasedOnPreviousWebsitesVisited';
+    return this.http.get(`${baseUrl}/${website}`);
+  }
+
+  
 }

@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NewBookingComponent } from './components/new-booking/new-booking.component';
 import { SeatBookingComponent } from './components/seat-booking/seat-booking.component';
 import { RecommendPlacesComponent } from './components/recommend-places/recommend-places.component';
+import { HopsComponent } from './components/hops/hops.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'seat', component: SeatBookingComponent },
   { path: 'new-booking', component: NewBookingComponent },
   { path: 'recommend-places', component: RecommendPlacesComponent },
+  { path: 'hops', component: HopsComponent },
+  
 ];
 
 @NgModule({

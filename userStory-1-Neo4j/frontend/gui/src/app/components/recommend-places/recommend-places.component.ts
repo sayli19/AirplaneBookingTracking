@@ -10,10 +10,44 @@ import { Router } from '@angular/router';
 export class RecommendPlacesComponent implements OnInit {
   flight;
   mainAirport;
+  airports:any;
   flights:any;
+  likes;
+  place;
+  website;
+  venue;
+  showHopsVar;
   constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  getPlacesBasedOnLikes(likes){
+    this.httpService.getPlacesBasedOnLikes(likes)
+    .subscribe(
+      data => {
+        console.log(data.result)
+        this.place = data.result
+        // console.log(this.mainAirport)
+        // this.getConnectingFlights(this.mainAirport)
+      },
+      error => {
+        console.log("error"+error);
+      });
+  }
+
+  getPlacesBasedOnPreviousWebsitesVisited(website){
+    this.httpService.getPlacesBasedOnPreviousWebsitesVisited(website)
+    .subscribe(
+      data => {
+        console.log(data.result)
+        this.venue = data.result
+        // console.log(this.mainAirport)
+        // this.getConnectingFlights(this.mainAirport)
+      },
+      error => {
+        console.log("error"+error);
+      });
   }
 
   getShortestAndFurthest(flight){
@@ -21,6 +55,7 @@ export class RecommendPlacesComponent implements OnInit {
     .subscribe(
       data => {
         console.log(data.result)
+        this.airports = data.result
         this.mainAirport = data.result[1].Airport
         // console.log(this.mainAirport)
         // this.getConnectingFlights(this.mainAirport)
@@ -43,6 +78,10 @@ export class RecommendPlacesComponent implements OnInit {
         console.log("error"+error);
       });
   }
+
+  showHops(){
+    this.showHopsVar = true;
+    }
 
 }
 

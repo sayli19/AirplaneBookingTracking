@@ -8,13 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { SeatBookingComponent } from './components/seat-booking/seat-booking.component';
 import { NewBookingComponent } from './components/new-booking/new-booking.component';
 import { RecommendPlacesComponent } from './components/recommend-places/recommend-places.component';
+import { HopsComponent } from './components/hops/hops.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SeatBookingComponent,
     NewBookingComponent,
-    RecommendPlacesComponent
+    RecommendPlacesComponent,
+    HopsComponent
   ],
   imports: [
     BrowserModule,
