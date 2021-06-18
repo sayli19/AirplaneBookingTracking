@@ -39,7 +39,12 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     });
   });
 
-
+  app.get("/getAvailableMeals", function(req, res, next) {
+    db.collection("meal").find({Is_Available:1},{Meal_Name:true, _id:false}).toArray(function(err, docs) {
+      console.log(docs);
+        res.send(docs);
+      });
+  });
 
   app.get("/getPreviousMealTypeId:id", function(req, res, next) {
     id = req.params.id;
